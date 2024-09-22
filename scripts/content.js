@@ -4,6 +4,7 @@ window.addEventListener("load", function () {
 
   let isFilterApplied = false
   const inputFields = document.querySelectorAll("input[type='text']");
+  const otherInputs = document.querySelectorAll("textarea");
 
 // apply filter func
   let applyFilter = () => {
@@ -22,11 +23,49 @@ window.addEventListener("load", function () {
     });
   }
 
+  // textareas check
+//   let isFocused = false;
+//   function checkTextareaFocus() {
+//     // let isFocused = false;
+//     const textareas = document.querySelectorAll('textarea');
+
+//   textareas.forEach((textarea) => {
+//       if (document.activeElement === textarea) {
+//           isFocused = true;
+//       }
+//   });
+
+//   return isFocused;
+// }
+
+// const textareas = document.querySelectorAll('textarea');
+// textareas.forEach((textarea) => {
+//   textarea.addEventListener('focus', () => {
+//     isFocused = true;
+//     console.log('A textarea is focused.');
+//   });
+
+//   textarea.addEventListener('blur', () => {
+//     isFocused = false;
+//     console.log('A textarea lost focus.');
+//   });
+// });
+
   // is any inputs focused or not
   let isAnyInputFocused = false;
+  let isTFocused = false;
   function checkFocus() {
     isAnyInputFocused = Array.from(inputFields).some(input => input === document.activeElement);
   }
+
+  function checkTFocus() {
+    isTFocused = Array.from(otherInputs).some(input => input === document.activeElement);
+  }
+
+  otherInputs.forEach(textarea => {
+    textarea.addEventListener("focus", checkTFocus);
+    textarea.addEventListener("blur", checkTFocus);
+  });
 
   inputFields.forEach(inputField => {
     inputField.addEventListener("focus", checkFocus);
@@ -46,7 +85,7 @@ window.addEventListener("load", function () {
 
 
   document.addEventListener('keydown', (event)=> {
-    if(event.key == 'x' && !isAnyInputFocused){
+    if(event.key == 'x' && !isAnyInputFocused && isTFocused){
       if(isFilterApplied == true){
         removeFilter();        
         isFilterApplied = false;
