@@ -1,0 +1,33 @@
+{
+    "manifest_version": 3,
+    "name": "Web Controls (For Students)",
+    "version": "0.0.1",
+    "description": "Lets you adjust contrast, saturation and vibrance of media in websites.",
+    "icons": {
+        "16": "images/myicon.png",
+        "48": "images/myicon.png",
+        "128": "images/myicon.png"
+    },
+    "action": {
+        "default_popup": "popup/popup.html",
+        "default_icon": {
+            "16": "images/myicon.png",
+            "48": "images/myicon.png",
+            "128": "images/myicon.png"
+        },
+        "default_title": "Add filters to Web"
+    },
+
+    "background": {
+        "service_worker": "background.js"
+    },
+
+    "content_scripts": [
+        {
+          "matches": ["<all_urls>"],
+          "js": ["scripts/content.js"],
+          "css": ["contentStyle.css"]
+        }
+    ]
+
+}

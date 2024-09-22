@@ -1,0 +1,84 @@
+/* * {
+    filter: invert(1);
+} */
+
+/* img, video {
+    filter : invert(100%);
+
+} */
+
+/* video {
+    filter : saturate(160%);
+    /* filter : invert(100%); */
+    /* filter: blur(30px); */
+    /* filter : contrast(110%); */
+    /* filter :opacity(50%); */
+    /* background: hsla(0, 100%, 50%,100%); */
+
+
+
+/* embed, video, img { */
+    /* filter: contrast(100%) brightness(100%) invert(1); */
+/* } */
+
+
+
+.invert-tog{
+    position: absolute;
+    background-color: green;
+    width: 80%;
+    height: 40%;
+    top: 2%;
+    right : 2%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#main-invert{
+    /* background-color: blue; */
+    width: 100%;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color .1s ease;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+
+}
+
+#main-invert:hover{
+    
+    background-color: rgba(22, 22, 36, 0.7);
+}
+
+
+.invert-p {
+    /* color: white; */
+    left: 2%;
+    font-family: "Roboto", sans-serif;
+    font-weight: 700;
+    font-size: 1.3rem;
+    position: absolute;
+}
+
+/* .ytp-right-controls {
+    background-color: aqua;
+} */
+
+/* 
+.ytp-mybutton{
+    background-color: red;
+    size: 20px;
+    src: url("images/play-icon.png"); */
+    
+    /* position: relative; */
+
+    /* display: flex; */
+    /* justify-content: center;
+    align-items: center; */
+
+/* } */
+
