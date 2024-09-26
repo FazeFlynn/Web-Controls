@@ -4,64 +4,64 @@ window.addEventListener("load", function () {
 
   console.log('Web Controls Initiated');
 
-  document.querySelectorAll('video').forEach(video => {
-    // Disable autoplay
-    video.autoplay = false;
-    // If the video is playing, pause it
-    video.pause();
-    // Remove autoplay attribute if it exists
-    video.removeAttribute('autoplay');
-  });
+  // document.querySelectorAll('video').forEach(video => {
+  //   // Disable autoplay
+  //   video.autoplay = false;
+  //   // If the video is playing, pause it
+  //   video.pause();
+  //   // Remove autoplay attribute if it exists
+  //   video.removeAttribute('autoplay');
+  // });
   
 
   let isFilterApplied = false
   const inputFields = document.querySelectorAll("input[type='text']");
   const otherInputs = document.querySelectorAll("textarea");
 
-// apply filter func
+  // apply filter func
   let applyFilter = () => {
     // console.log("Invert mode ON");
     document.body.style.filter = "invert(1)"; 
-    document.querySelectorAll('img, video').forEach((element) => {
+    document.querySelectorAll('img, video, svg').forEach((element) => {
       element.style.filter = "invert(1)";  
     });
   }
-// removing filter
+  // removing filter
   let removeFilter = () => {
     console.log("Invert mode OFF");
     document.body.style.filter = "invert(0)"; 
-    document.querySelectorAll('img, video').forEach((element) => {
+    document.querySelectorAll('img, video, svg').forEach((element) => {
       element.style.filter = "invert(0)";  
     });
   }
 
   // textareas check
-//   let isFocused = false;
-//   function checkTextareaFocus() {
-//     // let isFocused = false;
-//     const textareas = document.querySelectorAll('textarea');
+  //   let isFocused = false;
+  //   function checkTextareaFocus() {
+  //     // let isFocused = false;
+  //     const textareas = document.querySelectorAll('textarea');
 
-//   textareas.forEach((textarea) => {
-//       if (document.activeElement === textarea) {
-//           isFocused = true;
-//       }
-//   });
+  //   textareas.forEach((textarea) => {
+  //       if (document.activeElement === textarea) {
+  //           isFocused = true;
+  //       }
+  //   });
 
-//   return isFocused;
-// }
+  //   return isFocused;
+  // }
 
-// const textareas = document.querySelectorAll('textarea');
-// textareas.forEach((textarea) => {
-//   textarea.addEventListener('focus', () => {
-//     isFocused = true;
-    // console.log('A textarea is focused.');
-//   });
+  // const textareas = document.querySelectorAll('textarea');
+  // textareas.forEach((textarea) => {
+  //   textarea.addEventListener('focus', () => {
+  //     isFocused = true;
+      // console.log('A textarea is focused.');
+  //   });
 
-//   textarea.addEventListener('blur', () => {
-//     isFocused = false;
-    // console.log('A textarea lost focus.');
-//   });
-// });
+  //   textarea.addEventListener('blur', () => {
+  //     isFocused = false;
+      // console.log('A textarea lost focus.');
+  //   });
+  // });
 
   // is any inputs focused or not
   let isAnyInputFocused = false;
@@ -111,232 +111,335 @@ window.addEventListener("load", function () {
         isFilterApplied = true;
       }
     }
-});
+  });
 
+  // ============================Testing=============================
 
+  let classToAdd = "injected-class-of-web-extension"
+  let classToParent = "class-added-to-parent-div-by-web-controls";
+  let msgSpan = "null";
+  let wCUIdValue = "uid-web-controls-ext-video-identifier-value";
+  let wCUIdName = "data-uid-web-controls-ext-video-identifier-name";
+  let Times = 1;
+  
+  // let classCounter = 0;
+  // let currClass = "null";
+  let clearSTInd;
 
-
-
-
-// ============================Testing=============================
-
-let classToAdd = "injected-class-of-web-extension"
-let classToParent = "class-added-to-parent-div-by-web-controls";
-let msgSpan = "null";
-// let classCounter = 0;
-// let currClass = "null";
-let clearSTInd;
-
-function showMsg(){
-  if(clearSTInd){
-    clearTimeout(clearSTInd);
+  function showMsg(){
+    console.log("showed msg one time");
+    if(clearSTInd){
+      clearTimeout(clearSTInd);
+    }
+    msgSpan.style.opacity = '100%';
+    clearSTInd = setTimeout(() => {
+      msgSpan.style.opacity = '0%';      
+    }, 2000);
   }
-  msgSpan.style.opacity = '100%';
-  clearSTInd = setTimeout(() => {
-    msgSpan.style.opacity = '0%';      
-  }, 1000);
-}
 
-console.log("came here 0");
+  console.log("came here 0");
 
+  // let injectingMsgBoxFirstTime = true;
+  let videoSpeedToChange;
+  let checkVideoClassToAdd;
 
-document.addEventListener('mousedown', function(event) {
-  const clickedElement = event.target;
-  const tagName = clickedElement.tagName.toLowerCase();
-  console.log("TagClicked " + tagName);
-  console.log("came here 1");
+  function checkForVideos(videoSpeedToChange) {
+    // videoSpeedToChange.playbackRate = 0.25;
 
-const videos = document.querySelectorAll('video');
-
-videos.forEach(video => {
-  console.log("came here 2");
-
-    video.addEventListener('play', () => {
-  console.log("came here 3");
-
-   
-        video.classList.add(classToAdd);
-      
+    console.log("set the speed to .25 + " + videoSpeedToChange);  
+    checkVideoClassToAdd = document.getElementsByClassName(classToAdd)[0];
+    if(checkVideoClassToAdd){
+      checkVideoClassToAdd.classList.remove(classToAdd);
+    }    
+    videoSpeedToChange.classList.add(classToAdd);
+    console.log("CLASSLIST OF VIDEOSPEEDTOCHANGE - " + videoSpeedToChange.classList);
 
         const currVidTag = document.getElementsByClassName(classToAdd)[0];
-        // console.log(currVidTag.classList);
-        const parentTag = currVidTag.parentElement;
-        parentTag.classList.add(classToParent);
-        parentTag.innerHTML+= '<div id="main-div" class="vid-overlay"><span id="msg-span" class="msg-span-inner">Initiating Web Controls🚀</span></div>';
-        msgSpan = document.getElementById("msg-span"); 
-        showMsg();    
-        
-       
-        if(currVidTag){
-          msgSpan.textContent = "Web Controls are Up, you go Soldier🚀";
-          showMsg();
-          // firstTimeOn = false;
-        } else {
-          msgSpan.textContent = "Oops!, something went wrong";
-          showMsg();
+        console.log("Added class to video - " + currVidTag.classList);
+
+        // console.log("Added class to video - " + videoSpe-edToChange.classList);
+        // const parentTag = currVidTag.parentElement;
+        // console.log("Parent tag - " + parentTag.classList);
+        // const parentTag = videoSpeedToChange.parentElement;
+
+        // let divForChecking = document.getElementById("msg-span-web-controls-ext");
+        let divForChecking = document.getElementsByClassName("vid-overlay-web-controls-ext")[0];
+        // if(!parentTag.classList.contains(classToParent)){
+          if(!divForChecking){
+          // parentTag.classList.add(classToParent);
+          // parentTag.innerHTML+= '<div id="main-div-web-controls-ext" class="vid-overlay-web-controls-ext"><span id="msg-span-web-controls-ext" class="msg-span-inner-web-controls-ext">Initiating Web Controls🚀</span></div>';
+          // msgSpan = document.getElementById("msg-span-web-controls-ext"); 
+          // showMsg();   
+          // console.log("ADDED PARENT ONLY TIME");
+
+          let newDiv = document.createElement('div');
+          newDiv.classList.add("vid-overlay-web-controls-ext");
+          newDiv.innerHTML = '<span id="msg-span-web-controls-ext" class="msg-span-inner-web-controls-ext">Initiating Web Controls🚀</span>';
+          currVidTag.insertAdjacentElement('afterend', newDiv);
+          console.log('Injected newDiv');
+
+          msgSpan = document.getElementById("msg-span-web-controls-ext"); 
+          console.log("msgSpan = " + msgSpan);
+          showMsg();  
+
+          if(videoSpeedToChange){
+            msgSpan.textContent = "Web Controls are Up, you go Soldier🚀";
+            showMsg();
+            // firstTimeOn = false;
+          } else {
+            msgSpan.textContent = "Oops!, something went wrong";
+            showMsg();
+          }
         }
-     
+ }
+
+ function checkWCAttribute (videoSpeedToChange){
+  if(!videoSpeedToChange.hasAttribute(wCUIdName)){ 
+
+    const elementsWithDataUID = document.querySelectorAll(`[${wCUIdName}]`);
+    if(elementsWithDataUID > 0){
+      elementsWithDataUID.forEach(element => {
+        element.removeAttribute(wCUIdName);
+        console.log(`Removed data-uid from:`, element);
+      }); 
+    }
+
+    checkForVideos(videoSpeedToChange); 
+    videoSpeedToChange.setAttribute(wCUIdName,wCUIdValue);
+  } 
+ }
 
 
+  document.addEventListener('click', function(event) {
+    const clickedElement = event.target;
+    const tagName = clickedElement.tagName.toLowerCase();
+    console.log("TagClicked " + tagName);
+    // console.log("came here 1");
+
+    videoSpeedToChange = document.querySelector('video');
+    console.log("Targeted tag - " + videoSpeedToChange.tagName)
+
+    console.log("Iterating all videos");
+
+    // if(!videoSpeedToChange.hasAttribute(wCUIdName)){    
+      // console.log("attribute added");
+
+    // videoSpeedToChange.setAttribute(wCUIdName,wCUIdValue);
+
+    videoSpeedToChange.addEventListener('play', () => {
+      console.log("Video is playing");
+      console.log("Ran " + (Times+=1) + " Times");    
+      checkWCAttribute(videoSpeedToChange);           
     });
 
-    // video.addEventListener('pause', () => {
-    //     // console.log('Video is paused:', video);
-    //     // Custom logic when the video is paused
-    // });
-});
+    videoSpeedToChange.addEventListener('pause', () => {
+      console.log('Video is paused');
+      // Custom logic when the video is paused
+      // checkForVideos(videoSpeedToChange);
+      checkWCAttribute(videoSpeedToChange);
+    });
+
+  // }
+
+  });
 
 
-});
+  // ==============Original====================
 
-let isInvert = false;
-let videoSpeedToChange;
+  // const videos = document.querySelectorAll('video');
+  // // const video = document.querySelector('video');
 
-function updateFilters() {
-  if (isInvert){
-    videoSpeedToChange.style.filter = `saturate(${saturation}%) contrast(${contrast}%) brightness(${brightness}%) invert(100%)`;
-  } else {
-    videoSpeedToChange.style.filter = `saturate(${saturation}%) contrast(${contrast}%) brightness(${brightness}%)`;
+  // videos.forEach(video => {
+  //   console.log("Iterating all videos");
+
+  //     video.addEventListener('play', () => {
+  //   console.log("found playing video");
+
+
+  //         video.classList.add(classToAdd);
+  //   // videoSpeedToChange = document.getElementsByClassName(classToAdd)[0];
+
+  //         video.playbackRate = 0.25;
+  //         console.log("set the speed to .25");
+
+
+  //         const currVidTag = document.getElementsByClassName(classToAdd)[0];
+  //         console.log("Added class to video - " + currVidTag.classList);
+  //         const parentTag = currVidTag.parentElement;
+  //         parentTag.classList.add(classToParent);
+  //         parentTag.innerHTML+= '<div id="main-div" class="vid-overlay"><span id="msg-span" class="msg-span-inner">Initiating Web Controls🚀</span></div>';
+  //         msgSpan = document.getElementById("msg-span"); 
+  //         showMsg();    
+
+
+  //         if(currVidTag){
+  //           msgSpan.textContent = "Web Controls are Up, you go Soldier🚀";
+  //           showMsg();
+  //           // firstTimeOn = false;
+  //         } else {
+  //           msgSpan.textContent = "Oops!, something went wrong";
+  //           showMsg();
+  //         }
+
+
+
+  //     });
+
+  //     // video.addEventListener('pause', () => {
+  //     //     // console.log('Video is paused:', video);
+  //     //     // Custom logic when the video is paused
+  //     // });
+  // });
+
+  // });
+
+
+  let isInvert = false;
+  // let videoSpeedToChange;
+
+  function updateFilters() {
+    if (isInvert){
+      videoSpeedToChange.style.filter = `saturate(${saturation}%) contrast(${contrast}%) brightness(${brightness}%) invert(100%)`;
+    } else {
+      videoSpeedToChange.style.filter = `saturate(${saturation}%) contrast(${contrast}%) brightness(${brightness}%)`;
+    }
   }
-}
 
-function removeFilters() { 
-  videoSpeedToChange.style.filter = `saturate(100%) contrast(100%) brightness(100%)`;
-  
-}
+  function removeFilters() { 
+    videoSpeedToChange.style.filter = `saturate(100%) contrast(100%) brightness(100%)`;
+
+  }
 
 
-let currSpeed = 1;
-let saturation = 100;
-let contrast = 100;
-let brightness = 100;
-// let firstTimeOn = true;
+  let currSpeed = 1;
+  let saturation = 100;
+  let contrast = 100;
+  let brightness = 100;
+  // let firstTimeOn = true;
 
-document.addEventListener('keydown', (event) => {
-  // msgSpan = document.getElementById("msg-span");
-  videoSpeedToChange = document.getElementsByClassName(classToAdd)[0];
-  if(videoSpeedToChange){
-    
+  document.addEventListener('keydown', (event) => {
+    // msgSpan = document.getElementById("msg-span");
+    // videoSpeedToChange = document.getElementsByClassName(classToAdd)[0];
+    if(videoSpeedToChange){
 
-    if((event.key.toLowerCase() == 'a') && !isAnyInputFocused){
-      // console.log('a pressed');
-      if(currSpeed > .25){
-        videoSpeedToChange.playbackRate = (currSpeed - .25);
-        currSpeed-=.25
+
+      if((event.key.toLowerCase() == 'a') && !isAnyInputFocused){
+        // console.log('a pressed');
+        if(currSpeed > .25){
+          videoSpeedToChange.playbackRate = (currSpeed - .25);
+          currSpeed-=.25
+          // console.log('CurrSpeed : ' + currSpeed);
+          msgSpan.textContent = "Speed : " + (currSpeed).toFixed(2) + "x";
+    showMsg(); 
+
+      }
+    }
+    if((event.key.toLowerCase() == 's') && !isAnyInputFocused){
+      // console.log('s pressed');
+      // let videoSpeedToChange = document.getElementsByClassName(classToAdd)[0];
+      if(currSpeed < 5){
+        videoSpeedToChange.playbackRate = (currSpeed + .25);
+        currSpeed+=.25
         // console.log('CurrSpeed : ' + currSpeed);
         msgSpan.textContent = "Speed : " + (currSpeed).toFixed(2) + "x";
-  showMsg(); 
-
-    }
-  }
-  if((event.key.toLowerCase() == 's') && !isAnyInputFocused){
-    // console.log('s pressed');
-    // let videoSpeedToChange = document.getElementsByClassName(classToAdd)[0];
-    if(currSpeed < 5){
-      videoSpeedToChange.playbackRate = (currSpeed + .25);
-      currSpeed+=.25
-      // console.log('CurrSpeed : ' + currSpeed);
-      msgSpan.textContent = "Speed : " + (currSpeed).toFixed(2) + "x";
-  showMsg(); 
-
-    }
-  }
-  if((event.key.toLowerCase() == 'd') && !isAnyInputFocused){
-    // console.log('d pressed');
-    // let videoSpeedToChange = document.getElementsByClassName(classToAdd)[0];
-    if(currSpeed < 5){
-      videoSpeedToChange.playbackRate = 1;
-      currSpeed = 1;
-      // console.log('CurrSpeed : ' + currSpeed); 
-      msgSpan.textContent = "Speed : " + (currSpeed).toFixed(2) + "x";
-  showMsg();      
-    }
-  }
-
-  // =====================Fitlers========================
-
-  if (event.key == "q" && !isAnyInputFocused && (saturation > 0)) {
-    saturation -= 10;
-    updateFilters(); 
-
-    // addPadding();
-    msgSpan.textContent = 'Saturation : ' + (saturation/100).toFixed(2);
-    showMsg();          
-  }
-
-  if (event.key == "w" && !isAnyInputFocused && (saturation < 200)) {
-    // event.preventDefault();
-    saturation = parseInt(saturation) + 10;
-    updateFilters();  
-    // addPadding();
-    msgSpan.textContent = 'Saturation : ' + (saturation/100).toFixed(2);
-    showMsg();          
-  }
-
-  if (event.key == "e" && !isAnyInputFocused && (contrast > 50)) {
-    contrast -= 5;
-    updateFilters(); 
-    
-    // addPadding();      
-    msgSpan.textContent = 'Contrast : ' + (contrast/100).toFixed(2);
     showMsg(); 
-  }
+
+      }
+    }
+    if((event.key.toLowerCase() == 'd') && !isAnyInputFocused){
+      // console.log('d pressed');
+      // let videoSpeedToChange = document.getElementsByClassName(classToAdd)[0];
+      if(currSpeed < 5){
+        videoSpeedToChange.playbackRate = 1;
+        currSpeed = 1;
+        // console.log('CurrSpeed : ' + currSpeed); 
+        msgSpan.textContent = "Speed : " + (currSpeed).toFixed(2) + "x";
+    showMsg();      
+      }
+    }
+
+    // =====================Fitlers========================
+
+    if (event.key.toLowerCase() == "q" && !isAnyInputFocused && (saturation > 0)) {
+      saturation -= 10;
+      updateFilters(); 
+
+      // addPadding();
+      msgSpan.textContent = 'Saturation : ' + (saturation/100).toFixed(2);
+      showMsg();          
+    }
+
+    if (event.key.toLowerCase() == "w" && !isAnyInputFocused && (saturation < 200)) {
+      // event.preventDefault();
+      saturation = parseInt(saturation) + 10;
+      updateFilters();  
+      // addPadding();
+      msgSpan.textContent = 'Saturation : ' + (saturation/100).toFixed(2);
+      showMsg();          
+    }
+
+    if (event.key.toLowerCase() == "e" && !isAnyInputFocused && (contrast > 50)) {
+      contrast -= 5;
+      updateFilters(); 
+
+      // addPadding();      
+      msgSpan.textContent = 'Contrast : ' + (contrast/100).toFixed(2);
+      showMsg(); 
+    }
 
 
-  if (event.key == "r" && !isAnyInputFocused && (contrast < 150)) {
-    contrast = parseInt(contrast) + 5;
-    updateFilters(); 
-    // addPadding();      
-    msgSpan.textContent = 'Contrast : ' + (contrast/100).toFixed(2);
-    showMsg(); 
-  }
+    if (event.key.toLowerCase() == "r" && !isAnyInputFocused && (contrast < 150)) {
+      contrast = parseInt(contrast) + 5;
+      updateFilters(); 
+      // addPadding();      
+      msgSpan.textContent = 'Contrast : ' + (contrast/100).toFixed(2);
+      showMsg(); 
+    }
 
-  if (event.key == "[" && !isAnyInputFocused && (brightness > 40)) {
-    brightness -= 5;
-    // console.log("working here brihgt : " + brightness);
-    updateFilters(); 
-    // addPadding();      
-    msgSpan.textContent = 'Brightness : ' + (brightness/100).toFixed(2);
-    showMsg(); 
-  }
+    if (event.key == "[" && !isAnyInputFocused && (brightness > 40)) {
+      brightness -= 5;
+      // console.log("working here brihgt : " + brightness);
+      updateFilters(); 
+      // addPadding();      
+      msgSpan.textContent = 'Brightness : ' + (brightness/100).toFixed(2);
+      showMsg(); 
+    }
 
-  if (event.key == "]" && !isAnyInputFocused && (brightness < 150)) {
-    // event.preventDefault();
-    brightness = parseInt(brightness) + 5;
-    updateFilters();  
-    // addPadding();
-    msgSpan.textContent = 'Brightness : ' + (brightness/100).toFixed(2);
-    showMsg();          
-  }
+    if (event.key == "]" && !isAnyInputFocused && (brightness < 150)) {
+      // event.preventDefault();
+      brightness = parseInt(brightness) + 5;
+      updateFilters();  
+      // addPadding();
+      msgSpan.textContent = 'Brightness : ' + (brightness/100).toFixed(2);
+      showMsg();          
+    }
 
-  if (event.key == "x" && !isAnyInputFocused) {
-    // event.preventDefault();
-    if (!isInvert) {
-      isInvert = true;
-     } else{
+    if (event.key.toLowerCase() == "x" && !isAnyInputFocused) {
+      // event.preventDefault();
+      if (!isInvert) {
+        isInvert = true;
+       } else{
+        isInvert = false;
+       } 
+      updateFilters();  
+      // addPadding();
+      msgSpan.textContent = 'Invert : ' + isInvert;
+      showMsg();          
+    }
+
+
+    if (event.key.toLowerCase() == "v" && !isAnyInputFocused) {
+      // event.preventDefault();
+      removeFilters();  
       isInvert = false;
-     } 
-    updateFilters();  
-    // addPadding();
-    msgSpan.textContent = 'Invert : ' + isInvert;
-    showMsg();          
-  }
-
-
-  if (event.key == "v" && !isAnyInputFocused) {
-    // event.preventDefault();
-    removeFilters();  
-    isInvert = false;
-    saturation = 100;
-    brightness = 100;
-    contrast = 100;
-    // addPadding();
-    msgSpan.textContent = 'Filters Cleared';
-    showMsg();          
-  }
-  }
-});
-
-
-// };
+      saturation = 100;
+      brightness = 100;
+      contrast = 100;
+      // addPadding();
+      msgSpan.textContent = 'Filters Cleared';
+      showMsg();          
+    }
+    }
+  });
+  // };
 });

@@ -89,20 +89,25 @@
 
 /* ==================INJECTED CSS====================== */
 
-.class-added-to-parent-div-by-web-controls{
-    position: relative;
+/* .class-added-to-parent-div-by-web-controls { */
+    /* position: relative; */
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+    /* display: flex; */
+    /* justify-content: center; */
+    /* align-items: center; */
+    /* border: 2px solid white; */
+    /* background-color: yellow; */
+/* } */
 
-.vid-overlay {
+.vid-overlay-web-controls-ext {
     background-color: transparent;
-    width: 100%;
-    height: 50px;
     position: absolute;
-    top: 2%;
+    /* background-color: red; */
+    width: 100%;
+    height: 75px;
+    /* bottom: 5%; */
+    /* top: 15%; */
+    /* margin-top: 100px; */
     /* opacity: 0%; */
 
 
@@ -111,23 +116,23 @@
     justify-content: center;
     align-items: center;
 
-    z-index: 100;
+    z-index: 1000;
     /* display: none; */
 }
 
-.msg-span-inner {
+.msg-span-inner-web-controls-ext {
     font-family: "Roboto", sans-serif;
     background-color: rgba(0, 0, 0, 0.552);
     /* opacity: 50%; */
     color: white;
     font-weight: 600;
-    font-size: .9rem;
+    font-size: 15px;
     width: auto;
     height: auto;
-    padding: 10px 15px;
+    padding: 8px 15px;
     border-radius: 40px;
     text-align: center;
-    opacity: 0%;
-    transition: opacity .2s ease;
+    opacity: 100%;
+    /* transition: opacity .2s ease; */
 }
 
