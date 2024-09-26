@@ -6,13 +6,19 @@
 #container {
     height: auto;
     min-height: 150px;
-    max-height: 200px;
+    /* max-height: 200px; */
     width: 250px;
     background-color: #202124;
+
+    padding: 0px 15px;
+    
 }
 
 #dm-lbl {
-    color: wheat;
+    color: black;
+    background-color: yellow;
+    padding: 8px 15px;
+    border-radius: 40px;
 }
 
 .head {
@@ -22,8 +28,13 @@
 .inp-div {
     /* display: block; */
     /* background-color: red; */
-    height: 20px;
-    margin-top: 5px;
+    height: auto;
+    margin: 10px;
+    /* border: 2px solid white; */
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
     
 }
 
@@ -48,22 +59,43 @@ h1{
     color: white;
 }
 
-.center {
-    text-align: center;
+.p-tags {
+    text-align: left;
     background-color: #202124;
+    color: white;
+    font-weight: 600;
+
     
 }
 
+.center { 
+    text-align: center;
+}
+
 .margin {
-    color: red;
-    margin-top: 20px;
+    /* color: red; */
+    /* margin-top: 20px; */
+    height: 20px;
+    background-color: #202124;
+
 }
 
 .mes {
     border-top: 2px solid yellow;
     color:white;
     font-weight: 600;
+    background-color: #202124;
+
 }
 
+
+.padding-b {
+    padding-bottom: 5px;
+}
+
+
+#check-inp {
+    display: none;
+}
 
 
