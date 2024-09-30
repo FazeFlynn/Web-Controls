@@ -33,3 +33,8 @@ Boost your productivity and optimize your video-watching experience with these h
 
 ## Perfect for Students
 **Web Controls (For Students)** helps you focus on studying by giving you complete control over your visual environment. Whether you need to slow down a video to take notes or apply dark mode to avoid eye strain, this extension is your ideal study companion.
+
+### Enhanced Productivity and Time-Saving
+Using **Web Controls (For Students)** dramatically reduces the time spent manually adjusting video settings. With keyboard shortcuts, you can instantly change playback speed and apply filters without interrupting your workflow. For example, changing the playback speed conventionally may require multiple clicks through a settings menu, but with this extension, you can adjust it seamlessly in real time with just a keypress (`A` or `S`). Similarly, applying visual filters such as saturation and contrast is streamlined, letting you fine-tune your study materials on the go.
+
+By reducing the time spent navigating through various menus, this extension can save you several minutes per video, which adds up significantly over the course of study sessions. This ensures you spend more time learning and less time managing video settings, leading to enhanced productivity and a smoother study experience.
