@@ -1,35 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>My Extension</title>
-    <link rel="stylesheet" href="popup.css" />
-    <script defer src="popup.js"></script>
-  </head>
-  <body>
-    <div id="container">
-      <h1 class="center head">Filters</h1>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Youtube Controls</title>
+  <link rel="stylesheet" href="popup.css">
+  <script src="popup.js"></script>
+</head>
+<body>
+  
+  <div id='text-container'>
+    <p>Web Controls🚀</p>
+    <p>If you like it, you can give me a follow!</p>
+  </div>
 
-      <div class="inp-div">        
-        <label id="dm-lbl">Toggle Dark Mode
-          <input type="checkbox" id="check-inp"/>
-        </label>           
-      </div>
+  <a class="web" href="https://islamkhan.in" target="_blank">Visit my Website🚀</a>
 
-          <!-- <span id="slider"></span> -->
-          <p class="p-tags">Ctrl+Shift+x: toggles Dark Mode</p>
-          <p class="p-tags">A - Decreases speed by 0.25.</p>
-          <p class="p-tags">S - Increases speed by 0.25.</p>
-          <p class="p-tags">Q - Decreases saturation.</p>
-          <p class="p-tags">W - Increases saturation.</p>
-          <p class="p-tags">E - Decreases contrast.</p>    
-          <p class="p-tags">R - Increases contrast.</p>
-          <p class="p-tags">[ - Decreases Brightness</p>
-          <p class="p-tags">] - Increases Brightness</p> 
-          <p class="p-tags padding-b">x - Inverts video.</p>     
-          <!-- <div class="margin"></div> -->
-    </div>
-    <p class="center mes">This is just a prototype for testing, the fully functional extension will be released soon❄️</p>
-  </body>
+  <div class="link-container">
+    <a id="linkedin" href="https://www.linkedin.com/in/islam-khan-4644211b2" target="_blank">
+      <p>LinkedIn</p>
+      <img class="a-button" src="../images/linkedin.png" alt="">
+    </a>
+    <a class="middle-a" href="https://www.instagram.com/fazeflynn?igsh=MXFxdnZwc2dhMTZkNA==" target="_blank">
+      <p>Insta</p>
+      <img class="a-button" src="../images/instagram.png" alt="">
+    </a>
+    <a href="https://github.com/FazeFlynn" target="_blank">
+      <p>GitHub</p>
+      <img class="a-button" src="../images/github.png" alt="">
+    </a>    
+  </div>
+
+  <div class="kevin-div">
+    <img class="kevin-img" src="../images/kevin.png" alt="Image of a Minion">
+    <p>Hi there!, I am Kevin, I am here to help, I brought this banana for you.</p>
+   </div>
+
+
+  <label id="help-label" for="help">See shortcut keys here!</label>
+  <input type="checkbox" name="help" id="help">
+
+  <div class="helps">
+    <p>A - Decreases speed by 0.25.</p>
+    <p>S - Increases speed by 0.25.</p>
+
+    <p>Q - Decreases saturation.</p>
+    <p>W - Increases saturation.</p>
+
+    <p>E - Decreases contrast.</p>    
+    <p>R - Increases contrast.</p>
+
+    <p>[ - Decreases contrast.</p>    
+    <p>] - Increases contrast.</p>
+
+    <p>X - Inverts video.</p>    
+    <p>Z - Applies Predefined Filter Presets.</p>
+    
+    <p>/ - Decreases Volume</p> 
+    <p>* - Increases Volume</p>
+    <p>Cltrl+Shift+X - Inverts WebPage.</p>    
+    <!-- <p> - Inverts video.</p>     
+    <p>z - Applies Predefined Filter Presets.</p>   -->
+
+    <!-- <a href="https://islamkhan.in" class="normal-p">Visit my Website🚀</a> -->
+    <!-- <a class="web" href="https://islamkhan.in" target="_blank">Visit my Website</a> -->
+     <!-- <div class="kevin-div">
+       <img class="kevin-img" src="../images/kevin.png" alt="Image of a Minion">
+       <p>Hi there!, I am Kevin, Here is a banana for you.</p>
+      </div> -->
+  </div>
+</body>
 </html>

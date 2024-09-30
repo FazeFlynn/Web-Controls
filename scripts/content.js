@@ -18,20 +18,32 @@ window.addEventListener("load", function () {
   const inputFields = document.querySelectorAll("input[type='text']");
   const otherInputs = document.querySelectorAll("textarea");
 
+  const htmlTag = document.documentElement;
+
   // apply filter func
   let applyFilter = () => {
-    // console.log("Invert mode ON");
+
+// Change the background color
+// htmlTag.style.backgroundColor = 'lightblue';
+    console.log("Invert mode ON");
+    // htmlTag.style.filter = "invert(1)"; 
+    
     document.body.style.filter = "invert(1)"; 
-    document.querySelectorAll('img, video, svg').forEach((element) => {
+    document.querySelectorAll('img, video, svg, picture, canvas, object').forEach((element) => {
+      // document.querySelectorAll('flt-glass-pane').forEach((element) => {
       element.style.filter = "invert(1)";  
+      console.log("placeholder 1");
     });
   }
   // removing filter
   let removeFilter = () => {
     console.log("Invert mode OFF");
     document.body.style.filter = "invert(0)"; 
-    document.querySelectorAll('img, video, svg').forEach((element) => {
+
+    document.querySelectorAll('img, video, svg, picture, canvas, object').forEach((element) => {
       element.style.filter = "invert(0)";  
+      console.log("placeholder 2");
+
     });
   }
 
@@ -102,6 +114,9 @@ window.addEventListener("load", function () {
 
   document.addEventListener('keydown', (event) => {
     if((event.ctrlKey && event.shiftKey && event.key.toLowerCase() == 'x') && !isAnyInputFocused){
+      // event.stopImmediatePropagation();
+      event.preventDefault();
+
       // console.log('KeyPressed');
       if(isFilterApplied == true){        
         removeFilter();        
@@ -111,7 +126,47 @@ window.addEventListener("load", function () {
         isFilterApplied = true;
       }
     }
-  });
+
+
+    // if((event.ctrlKey && event.shiftKey && event.key.toLowerCase() == 'x') && !isAnyInputFocused){
+    //   console.log('xxxxxxxxxxxxxxxxxxxxxxx pressed');
+    //   if(isFilterApplied == true){        
+    //     removeFilter();        
+    //     isFilterApplied = false;
+    //   } else {
+    //     applyFilter();
+    //     isFilterApplied = true;
+    //   }
+    // }
+
+    if((event.ctrlKey && event.shiftKey && event.key.toLowerCase() == 'v') && !isAnyInputFocused){
+      // event.stopImmediatePropagation();
+      event.preventDefault();
+
+      console.log('KeyPressed _ ctrl+shift+V');
+      // let myEmbed = document.querySelector('embed');
+
+      if(myEmbed){
+      if(isEmbedLight == true){   
+      console.log('KeyPressed _ ctrl+shift+V =added invert');
+
+        // removeFilter(); 
+    htmlTag.style.filter = "invert(1)"; 
+
+        // myEmbed.style.filter = 'invert(100%)';
+        isEmbedLight = false;
+      } else {
+        // applyFilter();
+      console.log('KeyPressed _ ctrl+shift+V =removed invert');
+
+        // myEmbed.style.filter = 'invert(100%)';
+    htmlTag.style.filter = "invert(0)"; 
+
+        isEmbedLight = true;
+      }
+      }
+    }
+  }, true);
 
   // ============================Testing=============================
 
@@ -183,7 +238,7 @@ window.addEventListener("load", function () {
           showMsg();  
 
           if(videoSpeedToChange){
-            msgSpan.textContent = "Web Controls are Up, you go Soldier🚀";
+            msgSpan.textContent = "Web Controls are Up 🚀";
             showMsg();
             // firstTimeOn = false;
           } else {
@@ -213,11 +268,14 @@ window.addEventListener("load", function () {
   document.addEventListener('click', function(event) {
     const clickedElement = event.target;
     const tagName = clickedElement.tagName.toLowerCase();
-    console.log("TagClicked " + tagName);
-    // console.log("came here 1");
+    if(tagName){
+      console.log("TagClicked " + tagName);
+    }
+    console.log("came here 1");
 
     videoSpeedToChange = document.querySelector('video');
-    console.log("Targeted tag - " + videoSpeedToChange.tagName)
+    if(videoSpeedToChange){
+      console.log("Targeted tag - " + videoSpeedToChange.tagName);
 
     console.log("Iterating all videos");
 
@@ -238,6 +296,8 @@ window.addEventListener("load", function () {
       // checkForVideos(videoSpeedToChange);
       checkWCAttribute(videoSpeedToChange);
     });
+  }
+
 
   // }
 
@@ -299,7 +359,8 @@ window.addEventListener("load", function () {
 
   function updateFilters() {
     if (isInvert){
-      videoSpeedToChange.style.filter = `saturate(${saturation}%) contrast(${contrast}%) brightness(${brightness}%) invert(100%)`;
+      // videoSpeedToChange.style.filter = `saturate(${saturation}%) contrast(${contrast}%) brightness(${brightness}%) invert(100%)`;
+      videoSpeedToChange.style.filter = 'saturate(100%) contrast(115%) brightness(115%) invert(100%)';
     } else {
       videoSpeedToChange.style.filter = `saturate(${saturation}%) contrast(${contrast}%) brightness(${brightness}%)`;
     }
@@ -315,15 +376,30 @@ window.addEventListener("load", function () {
   let saturation = 100;
   let contrast = 100;
   let brightness = 100;
+  let isEmbedLight = true;
   // let firstTimeOn = true;
 
+  let satArr = [150,100];
+  let conArr = [110,115];
+  let brightArr = [100,50];
+  let filterMsg = ["For Movies", "For Late Night Studies"]
+  let filterCounter = 0;
+
+  let currVol;
+
+  console.log("Above event listener of keys");
+
   document.addEventListener('keydown', (event) => {
+    console.log("Some key pressed");
     // msgSpan = document.getElementById("msg-span");
     // videoSpeedToChange = document.getElementsByClassName(classToAdd)[0];
     if(videoSpeedToChange){
 
 
       if((event.key.toLowerCase() == 'a') && !isAnyInputFocused){
+        // event.stopImmediatePropagation();
+      event.preventDefault();
+
         // console.log('a pressed');
         if(currSpeed > .25){
           videoSpeedToChange.playbackRate = (currSpeed - .25);
@@ -335,6 +411,9 @@ window.addEventListener("load", function () {
       }
     }
     if((event.key.toLowerCase() == 's') && !isAnyInputFocused){
+      // event.stopImmediatePropagation();
+      event.preventDefault();
+
       // console.log('s pressed');
       // let videoSpeedToChange = document.getElementsByClassName(classToAdd)[0];
       if(currSpeed < 5){
@@ -347,6 +426,9 @@ window.addEventListener("load", function () {
       }
     }
     if((event.key.toLowerCase() == 'd') && !isAnyInputFocused){
+      // event.stopImmediatePropagation();
+      event.preventDefault();
+
       // console.log('d pressed');
       // let videoSpeedToChange = document.getElementsByClassName(classToAdd)[0];
       if(currSpeed < 5){
@@ -358,9 +440,39 @@ window.addEventListener("load", function () {
       }
     }
 
+    if((event.key.toLowerCase() == '/') && !isAnyInputFocused){
+      // event.stopImmediatePropagation();
+      event.preventDefault();
+
+      currVol = videoSpeedToChange.volume;      
+      if(currVol > 0.1){
+        currVol -= 0.1;
+        videoSpeedToChange.volume = currVol;
+               
+      }
+      msgSpan.textContent = "Volume : " + (currVol*100).toFixed(0) + "%";
+      showMsg();
+    }
+
+    if((event.key.toLowerCase() == '*') && !isAnyInputFocused){   
+      // event.stopImmediatePropagation();
+      event.preventDefault();
+
+      videoSpeedToChange.volume;
+      if(currVol < 0.9){
+        currVol += 0.1;
+        videoSpeedToChange.volume = currVol;              
+      }
+      msgSpan.textContent = "Volume : " + (currVol*100).toFixed(0) + "%";
+      showMsg();
+    }
+
     // =====================Fitlers========================
 
     if (event.key.toLowerCase() == "q" && !isAnyInputFocused && (saturation > 0)) {
+      // event.stopImmediatePropagation();
+      event.preventDefault();
+
       saturation -= 10;
       updateFilters(); 
 
@@ -371,6 +483,9 @@ window.addEventListener("load", function () {
 
     if (event.key.toLowerCase() == "w" && !isAnyInputFocused && (saturation < 200)) {
       // event.preventDefault();
+      // event.stopImmediatePropagation();
+      event.preventDefault();
+
       saturation = parseInt(saturation) + 10;
       updateFilters();  
       // addPadding();
@@ -379,6 +494,9 @@ window.addEventListener("load", function () {
     }
 
     if (event.key.toLowerCase() == "e" && !isAnyInputFocused && (contrast > 50)) {
+      // event.stopImmediatePropagation();
+      event.preventDefault();
+
       contrast -= 5;
       updateFilters(); 
 
@@ -389,6 +507,9 @@ window.addEventListener("load", function () {
 
 
     if (event.key.toLowerCase() == "r" && !isAnyInputFocused && (contrast < 150)) {
+      // event.stopImmediatePropagation();
+      event.preventDefault();
+
       contrast = parseInt(contrast) + 5;
       updateFilters(); 
       // addPadding();      
@@ -397,6 +518,9 @@ window.addEventListener("load", function () {
     }
 
     if (event.key == "[" && !isAnyInputFocused && (brightness > 40)) {
+      // event.stopImmediatePropagation();
+      event.preventDefault();
+
       brightness -= 5;
       // console.log("working here brihgt : " + brightness);
       updateFilters(); 
@@ -406,6 +530,9 @@ window.addEventListener("load", function () {
     }
 
     if (event.key == "]" && !isAnyInputFocused && (brightness < 150)) {
+      // event.stopImmediatePropagation();
+      event.preventDefault();
+
       // event.preventDefault();
       brightness = parseInt(brightness) + 5;
       updateFilters();  
@@ -415,6 +542,9 @@ window.addEventListener("load", function () {
     }
 
     if (event.key.toLowerCase() == "x" && !isAnyInputFocused) {
+      // event.stopImmediatePropagation();
+      event.preventDefault();
+
       // event.preventDefault();
       if (!isInvert) {
         isInvert = true;
@@ -423,23 +553,60 @@ window.addEventListener("load", function () {
        } 
       updateFilters();  
       // addPadding();
+      filterCounter = 1;
       msgSpan.textContent = 'Invert : ' + isInvert;
       showMsg();          
     }
 
+    if (event.key.toLowerCase() == "z" && !isAnyInputFocused) {
+      // event.stopImmediatePropagation();
+      event.preventDefault();
+
+      // contrast = parseInt(contrast) + 5;
+      // updateFilters(); 
+      // addPadding();  
+      console.log("Z was Pressed");
+      if(filterCounter > 1) {
+        filterCounter = 0;
+        console.log('came inside if if z')
+      }
+
+      saturation = satArr[filterCounter];
+      contrast = conArr[filterCounter];
+      brightness = brightArr[filterCounter];  
+      // videoSpeedToChange.style.filter = 'saturate(100%) contrast(115%) brightness(50%)';  
+      videoSpeedToChange.style.filter = `saturate(${saturation}%) contrast(${contrast}%) brightness(${brightness}%)`;
+      isInvert = false;
+
+      // msgSpan.textContent = 'Filter Preset 1 Added : ' + (contrast/100).toFixed(2);
+      msgSpan.textContent = 'Filter Preset ' + (filterCounter+1) + ': ' + filterMsg[filterCounter];
+      filterCounter+=1;
+      showMsg(); 
+      
+      // }
+    }
+
 
     if (event.key.toLowerCase() == "v" && !isAnyInputFocused) {
+      // event.stopImmediatePropagation();
+      event.preventDefault();
+
       // event.preventDefault();
       removeFilters();  
       isInvert = false;
       saturation = 100;
       brightness = 100;
       contrast = 100;
+      filterCounter = 0;
       // addPadding();
       msgSpan.textContent = 'Filters Cleared';
       showMsg();          
     }
+
+    
+
+
     }
-  });
+  }, true);
   // };
 });

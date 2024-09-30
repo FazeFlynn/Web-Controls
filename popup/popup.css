@@ -3,14 +3,23 @@
     padding: 0%;
 }
 
+body {
+    height: auto;
+    /* background-color: ; */
+    background-color: #202124;
+}
+
 #container {
     height: auto;
-    min-height: 150px;
+    /* min-height: 150px; */
     /* max-height: 200px; */
     width: 250px;
     background-color: #202124;
 
     padding: 0px 15px;
+    position: relative;
+
+    
     
 }
 
@@ -29,7 +38,7 @@
     /* display: block; */
     /* background-color: red; */
     height: auto;
-    margin: 10px;
+    margin-top: 10px;
     /* border: 2px solid white; */
 
     display: flex;
@@ -85,6 +94,10 @@ h1{
     color:white;
     font-weight: 600;
     background-color: #202124;
+    padding: 10px 0;
+    position: absolute;
+    width: 100%;
+    display: block;
 
 }
 
@@ -99,3 +112,224 @@ h1{
 }
 
 
+.space {
+    position: absolute;
+    /* padding: 10px 0; */
+    height: auto;
+    width: 100%;
+    /* display: block; */
+    background: red;
+
+}
+
+.about {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    flex-direction: column;
+    /* position: absolute; */
+    /* width: 100%; */
+    width: auto;
+    background-color: red; 
+
+
+}
+
+
+
+
+/* ================ new styles ======================== */
+
+
+:root {
+    --primary-color: #1a2031;
+    --primary-color: #321d62;
+    --secondary-color: #222d32;
+    --secondary-color: #3c286a;
+    --ternary-color:#291b4a;
+    --text-color : #e0d0e4; 
+    --font-size: 14px;
+}
+
+* {
+    margin: 0%;
+    padding: 0%;
+    height: 0%;
+    width: 0%;
+    /* -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none; */
+}
+
+body {
+    width: 280px;
+    /* height: 150px; */
+    height: auto;
+    border-radius: 10px;
+    background-color: var(--primary-color);
+    border: none;
+    box-sizing: border-box;
+}
+
+p{
+    padding: 1px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: auto;
+    height: auto;
+    font-size: var(--font-size);
+    font-weight: 600;
+    color: aliceblue;
+
+}
+
+
+
+
+#text-container{
+
+    background-color: var(--primary-color);
+    height: 20%;
+    width: 100%;
+
+}
+
+.link-container{
+    
+
+    /* background-color: rgb(255, 251, 0); */
+    height: 80%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;   
+
+}
+
+.middle-a{
+    border-left: 1px solid #313d4e;
+    border-right: 1px solid #313d4e;
+}
+
+a { 
+    display: block;
+    color: aliceblue;  
+    width: 100%;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    column-gap: 5px;
+    align-items: center;
+}
+
+
+a:hover{
+    background-color: var(--secondary-color);
+}
+
+.a-button {
+    height: 20px;
+    width: 20px;
+}
+
+
+
+#help-label{
+    color: aliceblue;
+    background-color: var(--ternary-color);
+    display: block;
+    width: 100%;
+    text-align: right;
+ 
+
+}
+
+.arrow-span {
+    height: 100%;
+    width: 25px;
+    background-color: aqua;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#label-arrow{
+    height: 20px;
+    width: 20px;
+}
+
+#help{
+    display: none;
+}
+
+.helps{
+   
+    width: 100%;
+    height: 0px;
+    overflow: hidden;
+    transition: height .3s ease;
+    border-top: 1px solid var(--ternary-color);
+
+}
+
+#help:checked + .helps {
+    height: 280px;
+}
+
+.helps p {
+    display: block;
+    padding-left: 2%;
+    height: auto;
+    text-align:left;
+}
+
+.helps a {
+
+    height: auto;
+    display: block;
+
+    text-align: right;
+}
+
+.kevin-div {
+    /* position: absolute; */
+    width: 100%;
+    height: 160px;
+    /* height: 40%; */
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-top: 1px solid rgb(29, 7, 29);
+    /* background-color: red; */
+
+}
+
+.kevin-img {
+    /* position: absolute; */
+    width: 170px;
+    height: 170px;
+
+    aspect-ratio: 1/1;
+
+    /* background-color: red; */
+
+}
+
+
+.normal-p{
+    margin-top: 5px;
+    font-weight: normal;
+}
+
+
+.web {
+    background-color: var(--ternary-color);
+    font-weight: 600;
+    padding: 5px 0;
+    font-size: 1rem;
+}
