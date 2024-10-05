@@ -114,8 +114,8 @@ window.addEventListener("load", function () {
 
   document.addEventListener('keydown', (event) => {
     if((event.ctrlKey && event.shiftKey && event.key.toLowerCase() == 'x') && !isAnyInputFocused){
-      // event.stopImmediatePropagation();
-      event.preventDefault();
+      event.stopImmediatePropagation();
+      // event.preventDefault();
 
       // console.log('KeyPressed');
       if(isFilterApplied == true){        
@@ -140,8 +140,8 @@ window.addEventListener("load", function () {
     // }
 
     if((event.ctrlKey && event.shiftKey && event.key.toLowerCase() == 'v') && !isAnyInputFocused){
-      // event.stopImmediatePropagation();
-      event.preventDefault();
+      event.stopImmediatePropagation();
+      // event.preventDefault();
 
       console.log('KeyPressed _ ctrl+shift+V');
       // let myEmbed = document.querySelector('embed');
@@ -397,8 +397,8 @@ window.addEventListener("load", function () {
 
 
       if((event.key.toLowerCase() == 'a') && !isAnyInputFocused){
-        // event.stopImmediatePropagation();
-      event.preventDefault();
+        event.stopImmediatePropagation();
+      // event.preventDefault();
 
         // console.log('a pressed');
         if(currSpeed > .25){
@@ -411,8 +411,8 @@ window.addEventListener("load", function () {
       }
     }
     if((event.key.toLowerCase() == 's') && !isAnyInputFocused){
-      // event.stopImmediatePropagation();
-      event.preventDefault();
+      event.stopImmediatePropagation();
+      // event.preventDefault();
 
       // console.log('s pressed');
       // let videoSpeedToChange = document.getElementsByClassName(classToAdd)[0];
@@ -426,8 +426,8 @@ window.addEventListener("load", function () {
       }
     }
     if((event.key.toLowerCase() == 'd') && !isAnyInputFocused){
-      // event.stopImmediatePropagation();
-      event.preventDefault();
+      event.stopImmediatePropagation();
+      // event.preventDefault();
 
       // console.log('d pressed');
       // let videoSpeedToChange = document.getElementsByClassName(classToAdd)[0];
@@ -441,8 +441,8 @@ window.addEventListener("load", function () {
     }
 
     if((event.key.toLowerCase() == '/') && !isAnyInputFocused){
-      // event.stopImmediatePropagation();
-      event.preventDefault();
+      event.stopImmediatePropagation();
+      // event.preventDefault();
 
       currVol = videoSpeedToChange.volume;      
       if(currVol > 0.1){
@@ -455,8 +455,8 @@ window.addEventListener("load", function () {
     }
 
     if((event.key.toLowerCase() == '*') && !isAnyInputFocused){   
-      // event.stopImmediatePropagation();
-      event.preventDefault();
+      event.stopImmediatePropagation();
+      // event.preventDefault();
 
       videoSpeedToChange.volume;
       if(currVol < 0.9){
@@ -470,8 +470,8 @@ window.addEventListener("load", function () {
     // =====================Fitlers========================
 
     if (event.key.toLowerCase() == "q" && !isAnyInputFocused && (saturation > 0)) {
-      // event.stopImmediatePropagation();
-      event.preventDefault();
+      event.stopImmediatePropagation();
+      // event.preventDefault();
 
       saturation -= 10;
       updateFilters(); 
@@ -483,8 +483,8 @@ window.addEventListener("load", function () {
 
     if (event.key.toLowerCase() == "w" && !isAnyInputFocused && (saturation < 200)) {
       // event.preventDefault();
-      // event.stopImmediatePropagation();
-      event.preventDefault();
+      event.stopImmediatePropagation();
+      // event.preventDefault();
 
       saturation = parseInt(saturation) + 10;
       updateFilters();  
@@ -494,8 +494,8 @@ window.addEventListener("load", function () {
     }
 
     if (event.key.toLowerCase() == "e" && !isAnyInputFocused && (contrast > 50)) {
-      // event.stopImmediatePropagation();
-      event.preventDefault();
+      event.stopImmediatePropagation();
+      // event.preventDefault();
 
       contrast -= 5;
       updateFilters(); 
@@ -507,8 +507,8 @@ window.addEventListener("load", function () {
 
 
     if (event.key.toLowerCase() == "r" && !isAnyInputFocused && (contrast < 150)) {
-      // event.stopImmediatePropagation();
-      event.preventDefault();
+      event.stopImmediatePropagation();
+      // event.preventDefault();
 
       contrast = parseInt(contrast) + 5;
       updateFilters(); 
@@ -518,8 +518,8 @@ window.addEventListener("load", function () {
     }
 
     if (event.key == "[" && !isAnyInputFocused && (brightness > 40)) {
-      // event.stopImmediatePropagation();
-      event.preventDefault();
+      event.stopImmediatePropagation();
+      // event.preventDefault();
 
       brightness -= 5;
       // console.log("working here brihgt : " + brightness);
@@ -530,8 +530,8 @@ window.addEventListener("load", function () {
     }
 
     if (event.key == "]" && !isAnyInputFocused && (brightness < 150)) {
-      // event.stopImmediatePropagation();
-      event.preventDefault();
+      event.stopImmediatePropagation();
+      // event.preventDefault();
 
       // event.preventDefault();
       brightness = parseInt(brightness) + 5;
@@ -542,8 +542,8 @@ window.addEventListener("load", function () {
     }
 
     if (event.key.toLowerCase() == "x" && !isAnyInputFocused) {
-      // event.stopImmediatePropagation();
-      event.preventDefault();
+      event.stopImmediatePropagation();
+      // event.preventDefault();
 
       // event.preventDefault();
       if (!isInvert) {
@@ -559,8 +559,8 @@ window.addEventListener("load", function () {
     }
 
     if (event.key.toLowerCase() == "z" && !isAnyInputFocused) {
-      // event.stopImmediatePropagation();
-      event.preventDefault();
+      event.stopImmediatePropagation();
+      // event.preventDefault();
 
       // contrast = parseInt(contrast) + 5;
       // updateFilters(); 
@@ -588,8 +588,8 @@ window.addEventListener("load", function () {
 
 
     if (event.key.toLowerCase() == "v" && !isAnyInputFocused) {
-      // event.stopImmediatePropagation();
-      event.preventDefault();
+      event.stopImmediatePropagation();
+      // event.preventDefault();
 
       // event.preventDefault();
       removeFilters();  
