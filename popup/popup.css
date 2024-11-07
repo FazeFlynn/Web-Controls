@@ -1,3 +1,13 @@
+:root {
+    --primary-color: #1a2031;
+    --primary-color: #321d62;
+    --secondary-color: #222d32;
+    --secondary-color: #3c286a;
+    --ternary-color:#291b4a;
+    --text-color : #e0d0e4; 
+    --font-size: 14px;
+}
+
 * {
     margin: 0%;
     padding: 0%;
@@ -107,8 +117,20 @@ h1{
 }
 
 
+#check-inp-div {
+    background-color: ;
+    /* height: 20px; */
+    width: 100%;
+    height: auto;
+
+    display: block;
+
+}
+
 #check-inp {
-    display: none;
+    display: flex;
+    /* background-color: red; */
+    background-color: var(--ternary-color);
 }
 
 
@@ -142,15 +164,7 @@ h1{
 /* ================ new styles ======================== */
 
 
-:root {
-    --primary-color: #1a2031;
-    --primary-color: #321d62;
-    --secondary-color: #222d32;
-    --secondary-color: #3c286a;
-    --ternary-color:#291b4a;
-    --text-color : #e0d0e4; 
-    --font-size: 14px;
-}
+
 
 * {
     margin: 0%;

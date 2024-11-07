@@ -26,25 +26,29 @@ window.addEventListener("load", function () {
 // Change the background color
 // htmlTag.style.backgroundColor = 'lightblue';
     console.log("Invert mode ON");
-    // htmlTag.style.filter = "invert(1)"; 
+    // if(htmlTag)
+    htmlTag.style.filter = "invert(1)"; 
     
-    document.body.style.filter = "invert(1)"; 
-    document.querySelectorAll('img, video, svg, picture, canvas, object').forEach((element) => {
-      // document.querySelectorAll('flt-glass-pane').forEach((element) => {
-      element.style.filter = "invert(1)";  
-      console.log("placeholder 1");
-    });
+    // document.body.style.filter = "invert(1)"; 
+    // document.querySelectorAll('img, video, svg, picture, canvas, object').forEach((element) => {
+    //   // document.querySelectorAll('flt-glass-pane').forEach((element) => {
+    //   element.style.filter = "invert(1)";  
+    //   console.log("placeholder 1");
+    // });
   }
   // removing filter
   let removeFilter = () => {
+
+    htmlTag.style.filter = "invert(0)"; 
+
     console.log("Invert mode OFF");
-    document.body.style.filter = "invert(0)"; 
+    // document.body.style.filter = "invert(0)"; 
 
-    document.querySelectorAll('img, video, svg, picture, canvas, object').forEach((element) => {
-      element.style.filter = "invert(0)";  
-      console.log("placeholder 2");
+    // document.querySelectorAll('img, video, svg, picture, canvas, object').forEach((element) => {
+    //   element.style.filter = "invert(0)";  
+    //   console.log("placeholder 2");
 
-    });
+    // });
   }
 
   // textareas check
@@ -100,10 +104,13 @@ window.addEventListener("load", function () {
     inputField.addEventListener("blur", checkFocus);
   });
 
+  
+
 
   chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     if (request.action === "invert") {
         if (request.status) {
+          console.log("MSG CAME HERE")
             applyFilter();
         } else {
             removeFilter();
@@ -566,25 +573,15 @@ window.addEventListener("load", function () {
       // updateFilters(); 
       // addPadding();  
       console.log("Z was Pressed");
-      if(filterCounter > 1) {
-        filterCounter = 0;
-        console.log('came inside if if z')
-      }
 
-      saturation = satArr[filterCounter];
-      contrast = conArr[filterCounter];
-      brightness = brightArr[filterCounter];  
-      // videoSpeedToChange.style.filter = 'saturate(100%) contrast(115%) brightness(50%)';  
-      videoSpeedToChange.style.filter = `saturate(${saturation}%) contrast(${contrast}%) brightness(${brightness}%)`;
-      isInvert = false;
+      applyFilterPresets();
 
-      // msgSpan.textContent = 'Filter Preset 1 Added : ' + (contrast/100).toFixed(2);
-      msgSpan.textContent = 'Filter Preset ' + (filterCounter+1) + ': ' + filterMsg[filterCounter];
-      filterCounter+=1;
-      showMsg(); 
+      
       
       // }
     }
+
+    
 
 
     if (event.key.toLowerCase() == "v" && !isAnyInputFocused) {
@@ -608,5 +605,34 @@ window.addEventListener("load", function () {
 
     }
   }, true);
+
+  let applyFilterPresets = () => {
+    if(filterCounter > 1) {
+      filterCounter = 0;
+      console.log('came inside if if z')
+    }
+
+    saturation = satArr[filterCounter];
+    contrast = conArr[filterCounter];
+    brightness = brightArr[filterCounter];  
+    // videoSpeedToChange.style.filter = 'saturate(100%) contrast(115%) brightness(50%)';  
+    videoSpeedToChange.style.filter = `saturate(${saturation}%) contrast(${contrast}%) brightness(${brightness}%)`;
+    isInvert = false;
+
+    // msgSpan.textContent = 'Filter Preset 1 Added : ' + (contrast/100).toFixed(2);
+    msgSpan.textContent = 'Filter Preset ' + (filterCounter+1) + ': ' + filterMsg[filterCounter];
+    filterCounter+=1;
+    showMsg(); 
+
+  }
+
+  chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+    if (request.action === "Preset") {
+        if (request.status) {
+          console.log("Preset applied by kevin");
+          applyFilterPresets();
+        } 
+    }
+  });
   // };
 });

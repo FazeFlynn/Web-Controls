@@ -1,8 +1,13 @@
 // alert("Hello you clicked on this Extension");
 
 let invert = document.getElementById("check-inp");
+let presetFacade = document.getElementById("kevin-img");
+
+
+
 
 let invertweb = ()=> {    
+    console.log("INVERT CLIKCED");
     if(invert.checked){
         console.log("checked");
         // send message to background.js or content.js that it is checked
@@ -16,6 +21,16 @@ let invertweb = ()=> {
             chrome.tabs.sendMessage(tabs[0].id, { action: "invert", status: false });
         });
     }
+}
+
+
+let applyPreset = ()=> {   
+    console.log("Kevin says to apply preset"); 
+    
+        chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+            chrome.tabs.sendMessage(tabs[0].id, { action: "Preset", status: true });
+        });
+    
 }
 
 // document.addEventListener('keydown', (event)=> {
@@ -32,3 +47,4 @@ let invertweb = ()=> {
 
 
 invert.addEventListener('click', invertweb);
+presetFacade.addEventListener('click', applyPreset);
