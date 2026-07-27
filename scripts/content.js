@@ -229,14 +229,14 @@ window.addEventListener("load", function () {
         // if(!parentTag.classList.contains(classToParent)){
           if(!divForChecking){
           // parentTag.classList.add(classToParent);
-          // parentTag.innerHTML+= '<div id="main-div-web-controls-ext" class="vid-overlay-web-controls-ext"><span id="msg-span-web-controls-ext" class="msg-span-inner-web-controls-ext">Initiating Web Controls🚀</span></div>';
+          // parentTag.innerHTML+= '<div id="main-div-web-controls-ext" class="vid-overlay-web-controls-ext"><span id="msg-span-web-controls-ext" class="msg-span-inner-web-controls-ext">Initiating Web ControlsðŸš€</span></div>';
           // msgSpan = document.getElementById("msg-span-web-controls-ext"); 
           // showMsg();   
           // console.log("ADDED PARENT ONLY TIME");
 
           let newDiv = document.createElement('div');
           newDiv.classList.add("vid-overlay-web-controls-ext");
-          newDiv.innerHTML = '<span id="msg-span-web-controls-ext" class="msg-span-inner-web-controls-ext">Initiating Web Controls🚀</span>';
+          newDiv.innerHTML = '<span id="msg-span-web-controls-ext" class="msg-span-inner-web-controls-ext">Initiating Web ControlsðŸš€</span>';
           currVidTag.insertAdjacentElement('afterend', newDiv);
           console.log('Injected newDiv');
 
@@ -245,7 +245,7 @@ window.addEventListener("load", function () {
           showMsg();  
 
           if(videoSpeedToChange){
-            msgSpan.textContent = "Web Controls are Up 🚀";
+            msgSpan.textContent = "Web Controls are Up ðŸš€";
             showMsg();
             // firstTimeOn = false;
           } else {
@@ -334,13 +334,13 @@ window.addEventListener("load", function () {
   //         console.log("Added class to video - " + currVidTag.classList);
   //         const parentTag = currVidTag.parentElement;
   //         parentTag.classList.add(classToParent);
-  //         parentTag.innerHTML+= '<div id="main-div" class="vid-overlay"><span id="msg-span" class="msg-span-inner">Initiating Web Controls🚀</span></div>';
+  //         parentTag.innerHTML+= '<div id="main-div" class="vid-overlay"><span id="msg-span" class="msg-span-inner">Initiating Web ControlsðŸš€</span></div>';
   //         msgSpan = document.getElementById("msg-span"); 
   //         showMsg();    
 
 
   //         if(currVidTag){
-  //           msgSpan.textContent = "Web Controls are Up, you go Soldier🚀";
+  //           msgSpan.textContent = "Web Controls are Up, you go SoldierðŸš€";
   //           showMsg();
   //           // firstTimeOn = false;
   //         } else {
@@ -384,6 +384,7 @@ window.addEventListener("load", function () {
   let contrast = 100;
   let brightness = 100;
   let isEmbedLight = true;
+  let zoom = 1;
   // let firstTimeOn = true;
 
   let satArr = [150,100];
@@ -417,13 +418,69 @@ window.addEventListener("load", function () {
 
       }
     }
+
+    videoSpeedToChange.style.transition = "transform 0.3s ease"; 
+
+        // video.style.transform = "scale(1.5) rotate(10deg)";
+
+     if (event.key.toLowerCase() == "m" && !isAnyInputFocused) {
+      event.stopImmediatePropagation();
+      // event.preventDefault();
+
+      // saturation -= 10;
+      if(zoom >= 2) return
+      zoom += .05
+      // updateFilters(); 
+      videoSpeedToChange.style.transform = `scale(${zoom})`;
+
+
+      // addPadding();
+      msgSpan.textContent = 'Zoom : ' + zoom.toFixed(2);
+      showMsg();          
+    }
+
+     if (event.key.toLowerCase() == "n" && !isAnyInputFocused) {
+      event.stopImmediatePropagation();
+      // event.preventDefault();
+
+      // saturation -= 10;
+      if(zoom <= 1) return
+      zoom -= .05
+      // updateFilters(); 
+      videoSpeedToChange.style.transform = `scale(${zoom})`;
+
+
+      // addPadding();
+      msgSpan.textContent = 'Zoom : ' + (zoom).toFixed(2);
+      showMsg();          
+    }
+
+       if (event.key.toLowerCase() == "b" && !isAnyInputFocused) {
+      event.stopImmediatePropagation();
+      // event.preventDefault();
+
+      // saturation -= 10;
+      // if(zoom <= 1) return
+      zoom = 1
+      // updateFilters(); 
+      videoSpeedToChange.style.transform = `scale(${zoom})`;
+
+
+      // addPadding();
+      msgSpan.textContent = 'Zoom : ' + (zoom).toFixed(2);
+      showMsg();          
+    }
+
+
+
+
     if((event.key.toLowerCase() == 's') && !isAnyInputFocused){
       event.stopImmediatePropagation();
       // event.preventDefault();
 
       // console.log('s pressed');
       // let videoSpeedToChange = document.getElementsByClassName(classToAdd)[0];
-      if(currSpeed < 5){
+      if(currSpeed < 8){
         videoSpeedToChange.playbackRate = (currSpeed + .25);
         currSpeed+=.25
         // console.log('CurrSpeed : ' + currSpeed);
@@ -438,7 +495,7 @@ window.addEventListener("load", function () {
 
       // console.log('d pressed');
       // let videoSpeedToChange = document.getElementsByClassName(classToAdd)[0];
-      if(currSpeed < 5){
+      if(currSpeed <= 8){
         videoSpeedToChange.playbackRate = 1;
         currSpeed = 1;
         // console.log('CurrSpeed : ' + currSpeed); 
@@ -475,6 +532,8 @@ window.addEventListener("load", function () {
     }
 
     // =====================Fitlers========================
+
+
 
     if (event.key.toLowerCase() == "q" && !isAnyInputFocused && (saturation > 0)) {
       event.stopImmediatePropagation();
